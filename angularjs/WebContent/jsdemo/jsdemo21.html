@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Javascirpt Example</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script type="text/javascript">
+	var myData1 = {
+		name : "Adam",
+		weather : "sunny"
+	};
+
+	var myData2 = {
+		name : "Adam",
+		weather : "sunny"
+	};
+	
+	var myData3 = myData2;
+	
+	var test1 = myData1 == myData2;
+	var test2 = myData2 == myData3;
+	
+	var test3 = myData1 === myData2;
+	var test4 = myData2 === myData3;
+	
+	console.log("Test1: " + test1);
+    console.log("Test2: " + test2);
+    console.log("Test3: " + test3);
+    console.log("Test4: " + test4);
+</script>
+</head>
+<body>This is a simple example.
+</body>
+</html>

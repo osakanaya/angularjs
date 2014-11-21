@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Javascirpt Example</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script type="text/javascript">
+var myArray = new Array();
+myArray[0] = 100;
+myArray[1] = "Adam";
+myArray[2] = true;
+
+var myArray2 = [100, "Adam", false];
+
+function printArrayItems(array) {
+	for(var i = 0; i < array.length; i++) {
+		console.log("Index " + i + ":" + array[i]);
+	}
+}
+
+function printArrayItems2(array) {
+    angular.forEach(array, function(value, key) {
+    	console.log("Key " + key + ":" + value);
+    });
+}
+
+printArrayItems(myArray);
+printArrayItems(myArray2);
+
+console.log(angular.isArray([100, "Adam", true]));
+console.log(angular.isArray("Adam"));
+console.log(angular.isArray(23));
+
+var myArray3 = [100, "Adam", true];
+console.log("Index 0: " + myArray3[0]);
+myArray3[0] = "Tuesday";
+console.log("Index 0: " + myArray3[0]);
+
+printArrayItems2(myArray3);
+
+</script>
+</head>
+<body>This is a simple example.
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Javascirpt Example</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script type="text/javascript">
+var myGlobalVar = "apples";
+
+function myFunc(name) {
+	var myLocalVar = "sunny";
+	return ("Hello " + name + ". Today is " + myLocalVar + ".");
+}
+
+console.log(myFunc("Adam"));
+</script>
+<script type="text/javascript">
+console.log("I like " + myGlobalVar);
+</script>
+</head>
+<body>
+    This is a simple example.
+</body>
+</html>

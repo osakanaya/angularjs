@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Javascirpt Example</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script type="text/javascript">
+	var myData = {
+		name : "Adam",
+		weather : "sunny"
+	};
+
+	console.log("Prop: " + myData.doesnotexist);
+
+	var myData2 = {
+		name : "Adam"
+	};
+
+	console.log("Var: " + myData2.weather);
+	console.log("Prop: " + ("weather" in myData2));
+
+	myData2.weather = "sunny";
+	console.log("Var: " + myData2.weather);
+	console.log("Prop: " + ("weather" in myData2));
+
+	myData2.weather = null;
+	console.log("Var: " + myData2.weather);
+	console.log("Prop: " + ("weather" in myData2));
+	
+	var myData3 = {
+		name: "Adam",
+		city: null
+	};
+	
+	if (!myData3.name) {
+		console.log("name IS null or undefined");
+	} else {
+		console.log("name is NOT null or undefined");
+	}
+	
+	if (!myData3.city) {
+		console.log("city IS null or undefined");
+	} else {
+		console.log("city is NOT null or undefined");
+	}
+	
+	console.log("name: " + angular.isDefined(myData3.name));
+    console.log("city: " + angular.isDefined(myData3.city));
+    console.log("country: " + angular.isDefined(myData3.country));
+</script>
+</head>
+<body>This is a simple example.
+</body>
+</html>
