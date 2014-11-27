@@ -24,6 +24,13 @@
 					action : "Call family",
 					complete : false
 				}, ];
+				
+				$scope.addNewItem = function(newItem) {
+					$scope.todos.push({
+						action: newItem.action + " (" + newItem.location + ")",
+						complete: false
+					});
+				}
 			});
 </script>
 </head>
@@ -33,24 +40,48 @@
 			To Do List <span class="label label-info">{{(todos | filter: {complete: 'false'}).length}}</span>
 		</h3>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>No.</th>
-					<th>Action</th>
-					<th>Done</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="item in todos">
-					<td>{{$index + 1}}</td>
-					<td>{{item.action}}</td>
-					<td>
-					   <input type="checkbox" ng-model="item.complete" />
-					</td>
-				</tr>
-			</tbody>
-		</table>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="well">
+	                <div class="form-group row">
+	                    <label for="actionText">Action:</label>
+	                    <input id="actionText" class="form-control" ng-model="newTodo.action" />
+	                </div>
+	                <div class="form-group row">
+	                    <label for="actionLocation">Location:</label>
+	                    <select id="actionLocation" class="form-control" ng-model="newTodo.location">
+	                        <option>Home</option>
+	                        <option>Office</option>
+	                        <option>Mall</option>
+	                    </select>
+	                </div>
+	                <button class="btn btn-primary btn-block" ng-click="addNewItem(newTodo)">
+	                    Add
+	                </button>
+                </div>
+            </div>
+            <div class="col-xs-6">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Action</th>
+							<th>Done</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in todos">
+							<td>{{$index + 1}}</td>
+							<td>{{item.action}}</td>
+							<td>
+							   <input type="checkbox" ng-model="item.complete" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+            </div>
+        </div>
+
 	</div>
 </body>
 </html>
