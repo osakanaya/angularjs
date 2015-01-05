@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>Filters</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script>
+	angular.module("exampleApp", []).controller("defaultCtrl",
+			function($scope) {
+		        $scope.names = ["Apples", "Bananas", "Oranges"];
+			})
+			.directive("demoDirective", function() {
+			    return function(scope, element, attrs) {
+			    	var listElem = angular.element("<ol>");
+			    	element.append(listElem);
+			    	for(var i = 0; i < scope.names.length; i++) {
+			    		var spanElement = angular.element("<span>");
+			    		spanElement.text(scope.names[i]);
+
+			    		var liElement = angular.element("<li>");
+			    		liElement.append(spanElement);
+			    		
+			    		listElem.append(liElement);
+			    	}
+			    };
+			});
+</script>
+</head>
+<body ng-controller="defaultCtrl">
+<h3>Fruit</h3>
+<div demo-directive></div>
+</body>
+</html>
