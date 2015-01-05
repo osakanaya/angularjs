@@ -3,6 +3,7 @@
 <head>
 <title>Filters</title>
 <script src="/js/angular.js"></script>
+<script src="/js/angular-locale_ja-jp.js"></script>
 <link href="/css/bootstrap.css" rel="stylesheet" />
 <link href="/css/bootstrap-theme.css" rel="stylesheet" />
 <script>
@@ -53,9 +54,14 @@
 				}, {
 					name : "Whiskey",
 					category : "Drinks",
-					price : 45.99,
+					price : 12345.99,
 					expiry : 365
 				} ];
+				
+				$scope.getExpiryDate = function(days) {
+					var now = new Date();
+					return now.setDate(now.getDate() + days);
+				}
 			});
 </script>
 </head>
@@ -81,8 +87,8 @@
 					<tr ng-repeat="p in products">
 						<td>{{p.name}}</td>
 						<td>{{p.category}}</td>
-						<td>{{p.expiry}}</td>
-						<td class="text-right">{{p.price | currency:"�･"}}</td>
+						<td>{{getExpiryDate(p.expiry) | date:"fullDate"}}</td>
+						<td class="text-right">{{p.price | currency}}</td>
 					</tr>
 				</tbody>
 			</table>
