@@ -5,6 +5,12 @@
 <script src="/js/angular.js"></script>
 <link href="/css/bootstrap.css" rel="stylesheet" />
 <link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<style>
+*.error {
+    color: red;
+    font-weight: bold;
+}
+</style>
 <script type="text/ng-template" id="triTemplate">
     <div class="well">
         <div class="btn-group">
@@ -13,6 +19,9 @@
             <button class="btn btn-default">Not Sure</button>
         </div>
     </div>
+    <span class="error" ng-show="myForm.decision.$error.confidence">
+        You need to be sure
+    </span>
 </script>
 <script>
 	angular.module("exampleApp", []).controller("defaultCtrl",
@@ -22,12 +31,18 @@
 			.directive("triButton", function(){
 			    return {
 			    	restrict: "E",
-			    	replace: true,
+			    	replace: false,
 			    	require: "ngModel",
 			    	template: function() {
 			    		return angular.element(document.querySelector("#triTemplate")).html();
 			    	},
 			    	link: function (scope, element, attrs, ctrl) {
+			    		var validateParser = function(value) {
+			    			var valid = (value == "Yes" || value == "No");
+			    			ctrl.$setValidity("confidence", valid);
+			    			return valid ? value : undefined;
+			    		};
+			    		
                         element.on("click", function(event){
                         	var buttonText = event.target.innerText || event.target.textContent;
                             setSelected(buttonText);
@@ -47,29 +62,23 @@
 			    		};
 			    		
 			    		ctrl.$render = function() {
+			    			validateParser(ctrl.$viewValue);
 				    		setSelected(ctrl.$viewValue || "Not Sure");
 			    		};
 			    		
 			    		ctrl.$formatters.push(function(value){
 			    			return value == "Huh?" ? "Not Sure" : value;
 			    		});
+			    		
+			    		ctrl.$parsers.push(validateParser);
 			    	}
 			    }
 			});
 </script>
 </head>
 <body ng-controller="defaultCtrl">
-    <div>
-        <tri-button ng-model="dataValue" />
-    </div>
-    <div class="well">
-        Value: 
-        <select ng-model="dataValue">
-            <option>Yes</option>
-            <option>No</option>
-            <option>Not Sure</option>
-            <option>Huh?</option>
-        </select>
-    </div>
+    <form name="myForm" novalidate>
+        <tri-button name="decision" ng-model="dataValue" />
+    </form>
 </body>
 </html>
