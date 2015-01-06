@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>Filters</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script>
+	angular.module("exampleApp", []).controller("scopeCtrl",
+			function($scope) {
+			})
+			.directive("scopeDemo", function() {
+				return {
+					template: "<div class='panel-body'>Name: <input ng-model='name' /></div>"
+				};
+			});
+</script>
+</head>
+<body ng-controller="scopeCtrl">
+    <div ng-controller="scopeCtrl" class="panel panel-default">
+        <div class="panel-body" scope-demo></div>
+        <div class="panel-body" scope-demo></div>
+    </div>
+</body>
+</html>

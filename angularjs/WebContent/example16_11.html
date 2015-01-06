@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>Filters</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script type="text/ng-template" id="scopeTemplate">
+    <div class="panel-body">
+        <p>Name: <input ng-model="data.name" /></p>
+        <p>City: <input ng-model="city" /></p>
+        <p>Country: <input ng-model="country" /></p>
+    </div>
+</script>
+<script>
+	angular.module("exampleApp", []).controller("scopeCtrl",
+			function($scope) {
+                $scope.data = {name: "Adam"};
+                $scope.city = "London";
+			})
+			.directive("scopeDemo", function() {
+				return {
+					scope: true,
+					template: function() {
+						return angular.element(document.querySelector("#scopeTemplate")).html();
+					}
+				};
+			});
+</script>
+</head>
+<body ng-controller="scopeCtrl">
+    <div ng-controller="scopeCtrl" class="panel panel-default">
+        <div class="panel-body" scope-demo></div>
+        <div class="panel-body" scope-demo></div>
+    </div>
+</body>
+</html>
