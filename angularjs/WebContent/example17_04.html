@@ -28,6 +28,14 @@
 			    		return angular.element(document.querySelector("#triTemplate")).html();
 			    	},
 			    	link: function (scope, element, attrs, ctrl) {
+                        element.on("click", function(event){
+                        	var buttonText = event.target.innerText || event.target.textContent;
+                            setSelected(buttonText);
+                            scope.$apply(function() {
+                                ctrl.$setViewValue(buttonText);
+                            });
+                        });
+                        
 			    		var setSelected = function(value) {
 			    			var buttons = element.find("button");
 			    			buttons.removeClass("btn-primary");
@@ -38,7 +46,13 @@
 			    			}
 			    		};
 			    		
-			    		setSelected(scope.dataValue);
+			    		ctrl.$render = function() {
+				    		setSelected(ctrl.$viewValue || "Not Sure");
+			    		};
+			    		
+			    		ctrl.$formatters.push(function(value){
+			    			return value == "Huh?" ? "Not Sure" : value;
+			    		});
 			    	}
 			    }
 			});
@@ -54,6 +68,7 @@
             <option>Yes</option>
             <option>No</option>
             <option>Not Sure</option>
+            <option>Huh?</option>
         </select>
     </div>
 </body>
