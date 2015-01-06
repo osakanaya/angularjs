@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>Filters</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script type="text/ng-template" id="template">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>This is the panel</h4>
+        </div>
+        <div class="panel-body" ng-transclude>
+        </div>
+    </div>
+</script>
+<script>
+	angular.module("exampleApp", []).controller("defaultCtrl",
+			function($scope) {
+	            $scope.dataSource = "controller";
+			})
+			.directive("panel", function() {
+			    return {
+			    	link: function(scope, element, attrs) {
+			    		scope.dataSource = "directive";
+			    	},
+			    	restrict: "E",
+			    	scope: false,
+			    	template: function() {
+			    		return angular.element(document.querySelector("#template")).html();
+			    	},
+			    	transclude: true
+			    };
+			});
+</script>
+</head>
+<body ng-controller="defaultCtrl">
+    <panel>
+        The data value comes from the: {{dataSource}}.
+    </panel>
+</body>
+</html>
