@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>DOM API Services</title>
+<script src="/js/angular.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script>
+	angular.module("exampleApp", [])
+	.controller("defaultCtrl", function($scope, $location, $anchorScroll) {
+		$scope.itemCount = 50;
+		$scope.items = [];
+
+		var selectOption = function() {
+			this.id = 0;
+			this.label = "";
+		};
+		
+		for(var i = 0; i < $scope.itemCount; i++) {
+			$scope.items[i] = new selectOption();
+			$scope.items[i].id = i;
+			$scope.items[i].label = "Item " + i;
+		}
+
+		$scope.selectedItem = $scope.items[0];
+		
+		$scope.show = function(id) {
+			$location.hash(id);
+		}
+		
+		$scope.showItem = function(item) {
+			$location.hash($scope.selectedItem.id);
+		}
+	});
+</script>
+<base href="/" />
+</head>
+<body ng-controller="defaultCtrl">
+    <div class="panel panel-default">
+        <h4 class="panel-heading">URL</h4>
+        <div class="panel-body">
+            <select ng-model="selectedItem" ng-options="item.label for item in items" ng-change="showItem()"></select> 
+        </div>
+        <div class="panel-body">
+            <p id="top">This is the top</p>
+            <button class="btn btn-primary" ng-click="show('bottom')">Go to Bottom</button>
+
+            <p>
+                <ul>
+                    <div ng-repeat="item in items">
+                        <li id="{{$index}}">{{item.label}}</li>
+                    </div>
+                </ul>
+            </p>
+
+            <p id="bottom">This is the bottom</p>
+            <button class="btn btn-primary" ng-click="show('top')">Go to Top</button>
+        </div>
+    </div>
+</body>
+</html>
