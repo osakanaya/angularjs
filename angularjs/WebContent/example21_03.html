@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>RESTful Web Services</title>
+<script src="/js/angular.js"></script>
+<script src="/js/angular-resource.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script src="/js21/products_03.js"></script>
+<script src="/js21/increment_02.js"></script>
+</head>
+<body ng-controller="defaultCtrl">
+    <div class="panel panel-primary">
+        <h3 class="panel-heading">Products</h3>
+        <ng-include src="'example21_tableView_03.html'" ng-show="displayMode == 'list'"></ng-include>
+        <ng-include src="'example21_editorView_03.html'" ng-show="displayMode == 'edit'"></ng-include>
+    </div>
+</body>
+</html>
