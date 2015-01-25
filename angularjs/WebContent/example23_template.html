@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>RESTful Web Services</title>
+<script src="/js/angular.js"></script>
+<script src="/js/angular-resource.js"></script>
+<script src="/js/angular-route.js"></script>
+<script src="/js/angular-animate.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script src="/js23/products_template.js"></script>
+<script src="/js23/increment_template.js"></script>
+<base href="/" />
+</head>
+<body ng-controller="defaultCtrl">
+    <div class="panel panel-primary">
+        <h3 class="panel-heading">Products</h3>
+        <div ng-view></div>
+    </div>
+</body>
+</html>

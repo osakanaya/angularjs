@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+<title>RESTful Web Services</title>
+<script src="/js/angular.js"></script>
+<script src="/js/angular-resource.js"></script>
+<script src="/js/angular-route.js"></script>
+<script src="/js/angular-animate.js"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" />
+<link href="/css/bootstrap-theme.css" rel="stylesheet" />
+<script src="/js23/products_01.js"></script>
+<script src="/js23/increment_template.js"></script>
+<style type="text/css">
+.ngFade.ng-enter {
+    transition: 1s linear all;
+    opacity: 0;
+}
+.ngFade.ng-enter-active {
+    opacity: 1;
+}
+</style>
+<base href="/" />
+</head>
+<body ng-controller="defaultCtrl">
+    <div class="panel panel-primary">
+        <h3 class="panel-heading">Products</h3>
+        <div ng-view class="ngFade"></div>
+    </div>
+</body>
+</html>
